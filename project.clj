@@ -4,7 +4,8 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [bidi "1.10.4"]
+                 [compojure "1.1.8"]
+                 [clojurewerkz/route-one "1.1.0"]
                  [liberator "0.12.0"]
                  [org.clojure/tools.logging "0.3.0"]
                  [puppetlabs/trapperkeeper "0.4.3"]

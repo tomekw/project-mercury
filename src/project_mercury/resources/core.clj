@@ -1,12 +1,17 @@
 (ns project-mercury.resources.core
-  (:require [bidi.bidi :as routing]
-            [project-mercury.resources.users :as users]))
+  (:require [compojure.core :as compojure]
+            [compojure.handler :as handler]
+            [compojure.route :as route]
+            [clojure.tools.logging :as log]
+            [project-mercury.resources.users :as users])
+  (:use [clojurewerkz.route-one.core]))
 
-(def ^{:private true} routes
-  ["/"
-   {"users" users/list-resource}])
+(defroute users "/users")
+(defroute user "/users/:id")
 
-(def ^{:private true} compiled-routes (routing/compile-route routes))
+(compojure/defroutes routes
+  (compojure/ANY users-template request users/list-resource)
+  (compojure/ANY user-template request users/entry-resource))
 
 (def handler
-  (routing/make-handler compiled-routes))
+  (handler/site routes))
