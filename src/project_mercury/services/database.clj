@@ -3,7 +3,7 @@
             [hikari-cp.core :as cp]
             [clojure.java.jdbc :as jdbc]
             [puppetlabs.trapperkeeper.core :refer [defservice]]
-            [puppetlabs.trapperkeeper.services :as svcs]))
+            [puppetlabs.trapperkeeper.services :refer [service-context]]))
 
 (defprotocol DatabaseService
   (datasource [this])
@@ -28,7 +28,7 @@
         (cp/close-datasource (:datasource context))
         (dissoc context :dataseource-config :datasource))
   (datasource [this]
-              (let [context (svcs/service-context this)]
+              (let [context (service-context this)]
                 {:datasource (:datasource context)}))
   (query [this query]
          (jdbc/with-db-connection [conn (datasource this)]
