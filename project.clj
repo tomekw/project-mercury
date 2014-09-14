@@ -7,6 +7,7 @@
                  [compojure "1.1.8"]
                  [clojurewerkz/route-one "1.1.0"]
                  [liberator "0.12.0"]
+                 [postgresql "9.3-1102.jdbc41"]
                  [org.clojure/tools.logging "0.3.0"]
                  [puppetlabs/trapperkeeper "0.4.3"]
                  [puppetlabs/trapperkeeper-webserver-jetty9 "0.5.2"]]

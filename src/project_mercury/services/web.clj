@@ -1,16 +1,19 @@
 (ns project-mercury.services.web
   (:require [clojure.tools.logging :as log]
             [puppetlabs.trapperkeeper.core :refer [defservice]]
+            [project-mercury.services.database]
             [project-mercury.resources.core :as web]))
 
 (defservice service
   [[:ConfigService get-in-config]
+   [:DatabaseService foo]
    [:WebserverService add-ring-handler]]
   (init [this context]
         (log/info "Initializing web service.")
         context)
   (start [this context]
          (log/info "Starting web service.")
+         (log/info (foo))
          (let [context-path (get-in-config [:web :context-path] "/")]
            (log/info (format "Setting context path to %s." context-path))
            (add-ring-handler web/handler context-path))
