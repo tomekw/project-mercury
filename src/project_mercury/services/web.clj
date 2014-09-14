@@ -6,14 +6,14 @@
 
 (defservice service
   [[:ConfigService get-in-config]
-   [:DatabaseService foo]
+   [:DatabaseService query]
    [:WebserverService add-ring-handler]]
   (init [this context]
         (log/info "Initializing web service.")
         context)
   (start [this context]
          (log/info "Starting web service.")
-         (log/info (foo))
+         (log/info (query "SELECT * FROM users"))
          (let [context-path (get-in-config [:web :context-path] "/")]
            (log/info (format "Setting context path to %s." context-path))
            (add-ring-handler web/handler context-path))
