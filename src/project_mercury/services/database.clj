@@ -6,8 +6,7 @@
             [puppetlabs.trapperkeeper.services :refer [service-context]]))
 
 (defprotocol DatabaseService
-  (datasource [this])
-  (query [this query]))
+  (datasource [this]))
 
 (defservice service
   DatabaseService
@@ -29,8 +28,4 @@
         (dissoc context :dataseource-config :datasource))
   (datasource [this]
               (let [context (service-context this)]
-                {:datasource (:datasource context)}))
-  (query [this query]
-         (jdbc/with-db-connection [conn (datasource this)]
-           (let [rows (jdbc/query conn query)]
-             rows))))
+                {:datasource (:datasource context)})))
