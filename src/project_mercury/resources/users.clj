@@ -2,12 +2,12 @@
   (:require [liberator.core :refer [defresource]]
             [clojure.tools.logging :as log]))
 
-(defresource list-resource
+(defresource list-resource [datasource handlers]
   :allowed-methods [:get]
   :available-media-types ["text/plain"]
   :handle-ok (fn [_] "Hello users"))
 
-(defresource entry-resource
+(defresource entry-resource [datasource handlers]
   :allowed-methods [:get]
   :available-media-types ["text/plain"]
   :handle-ok (fn [context]

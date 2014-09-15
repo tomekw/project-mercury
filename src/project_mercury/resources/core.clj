@@ -1,17 +1,16 @@
 (ns project-mercury.resources.core
-  (:require [compojure.core :as compojure]
-            [compojure.handler :as handler]
-            [compojure.route :as route]
+  (:require [bidi.bidi :as routes]
             [clojure.tools.logging :as log]
-            [project-mercury.resources.users :as users])
-  (:use [clojurewerkz.route-one.core]))
+            [project-mercury.resources.users :as users]))
 
-(defroute users "/users")
-(defroute user "/users/:id")
+(defn make-handlers [datasource]
+  (let [p (promise)]
+    @(deliver p {:users (users/list-resource datasource p)
+                 :user (users/entry-resource datasource p)})))
 
-(compojure/defroutes routes
-  (compojure/ANY users-template request users/list-resource)
-  (compojure/ANY user-template request users/entry-resource))
+(defn make-routes [handlers]
+  ["/" [["users" (:users handlers)]
+        [["users/" :id] (:user handlers)]]])
 
-(def handler
-  (handler/site routes))
+(defn handler [datasource]
+  (routes/make-handler (make-routes (make-handlers datasource))))
