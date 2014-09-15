@@ -6,11 +6,11 @@
   :dependencies [[bidi "1.10.4"]
                  [org.clojure/clojure "1.6.0"]
                  [hikari-cp "0.6.0"]
-                 [org.clojure/java.jdbc "0.3.5"]
                  [liberator "0.12.1"]
                  [postgresql "9.3-1102.jdbc41"]
                  [org.clojure/tools.logging "0.3.0"]
                  [puppetlabs/trapperkeeper "0.5.1"]
-                 [puppetlabs/trapperkeeper-webserver-jetty9 "0.7.5"]]
+                 [puppetlabs/trapperkeeper-webserver-jetty9 "0.7.5"]
+                 [yesql "0.4.0"]]
   :aliases {"tk" ["trampoline" "run" "--config" "resources/config/config.conf" "--bootstrap-config" "resources/config/bootstrap.cfg"]}
   :main puppetlabs.trapperkeeper.main)

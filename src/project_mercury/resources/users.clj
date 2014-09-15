@@ -1,11 +1,13 @@
 (ns project-mercury.resources.users
   (:require [liberator.core :refer [defresource]]
             [clojure.java.jdbc :as jdbc]
-            [clojure.tools.logging :as log]))
+            [clojure.tools.logging :as log]
+            [yesql.core :refer [defqueries]]))
+
+(defqueries "project_mercury/queries/users.sql")
 
 (defn users [datasource]
-  (jdbc/with-db-connection [conn datasource]
-    (jdbc/query conn "SELECT * FROM users")))
+  (all-users datasource))
 
 (defresource list-resource [datasource handlers]
   :allowed-methods [:get]

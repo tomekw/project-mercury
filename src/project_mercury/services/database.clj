@@ -1,7 +1,6 @@
 (ns project-mercury.services.database
   (:require [clojure.tools.logging :as log]
             [hikari-cp.core :as cp]
-            [clojure.java.jdbc :as jdbc]
             [puppetlabs.trapperkeeper.core :refer [defservice]]
             [puppetlabs.trapperkeeper.services :refer [service-context]]))
 
