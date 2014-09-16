@@ -9,6 +9,9 @@
 (defn users [datasource]
   (all-users datasource))
 
+(defn user [datasource id]
+  (user-by-id datasource id))
+
 (defresource list-resource [datasource handlers]
   :allowed-methods [:get]
   :available-media-types ["text/plain"]
@@ -19,4 +22,4 @@
   :available-media-types ["text/plain"]
   :handle-ok (fn [context]
                (let [id (get-in context [:request :params :id])]
-                 (format "Hello user: %s" id))))
+                 (user datasource id))))

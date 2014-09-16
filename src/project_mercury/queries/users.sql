@@ -2,6 +2,6 @@
 -- Returns all users
 SELECT * FROM users;
 
--- name: find-user
--- Returns user by ID
-SELECT * FROM users WHERE id = :id;
+-- name: user-by-id
+-- Find user by ID
+SELECT * FROM users WHERE id = :id::uuid;
