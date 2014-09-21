@@ -8,6 +8,8 @@
                  [hikari-cp "0.6.0"]
                  [liberator "0.12.1"]
                  [postgresql "9.3-1102.jdbc41"]
+                 [ring/ring-anti-forgery "1.0.0"]
+                 [dhruv/ring-secure-headers "0.3.0"]
                  [org.clojure/tools.logging "0.3.1"]
                  [puppetlabs/trapperkeeper "0.5.1"]
                  [puppetlabs/trapperkeeper-webserver-jetty9 "0.7.5"]
