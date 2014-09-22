@@ -9,15 +9,18 @@
             [ring.middleware.params :refer [wrap-params]]
             [ring.middleware.cookies :refer [wrap-cookies]]
             [clojure.tools.logging :as log]
+            [project-mercury.resources.posts :as posts]
             [project-mercury.resources.users :as users]))
 
 (defn make-handlers [datasource]
   (let [p (promise)]
-    @(deliver p {:users (users/list-resource datasource p)
+    @(deliver p {:posts (posts/list-resource datasource p)
+                 :users (users/list-resource datasource p)
                  :user (users/entry-resource datasource p)})))
 
 (defn make-routes [handlers]
-  ["/" [["users" (:users handlers)]
+  ["/" [["" (:posts handlers)]
+        ["users" (:users handlers)]
         [["users/" :id] (:user handlers)]]])
 
 (defn handler [datasource]
