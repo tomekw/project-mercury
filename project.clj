@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[bidi "1.10.5"]
                  [org.clojure/clojure "1.6.0"]
+                 [org.clojure/java.jdbc "0.3.5"]
                  [hikari-cp "0.6.0"]
                  [liberator "0.12.1"]
                  [postgresql "9.3-1102.jdbc41"]

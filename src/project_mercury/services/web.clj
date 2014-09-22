@@ -7,6 +7,7 @@
 (defservice service
   [[:ConfigService get-in-config]
    [:DatabaseService datasource]
+   [:MigrationService]
    [:WebserverService add-ring-handler]]
   (init [this context]
         (log/info "Initializing web service.")
