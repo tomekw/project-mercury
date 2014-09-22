@@ -21,7 +21,8 @@
 (defn make-routes [handlers]
   ["/" [["" (:posts handlers)]
         ["users" (:users handlers)]
-        [["users/" :id] (:user handlers)]]])
+        [["users/" :id] (:user handlers)]
+        [[#".+"] (fn [req] {:status 404 :body "Not found"})]]])
 
 (defn handler [datasource]
   (->
