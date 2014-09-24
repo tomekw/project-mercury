@@ -1,7 +1,7 @@
 (ns project-mercury.services.migration
   (:require [clojure.tools.logging :as log]
             [puppetlabs.trapperkeeper.core :refer [defservice]]
-            [migrator.core :as migrator]))
+            [jupiter.core :as migrator]))
 
 (defprotocol MigrationService)
 
@@ -14,8 +14,9 @@
         context)
   (start [this context]
          (log/info "Running pending migrations (if any).")
-         (migrator/migrate (datasource)
-                           (get-in-config [:migrator :migrations-path]))
+         (migrator/ensure-schema-migrations-table (datasource))
+         ;(migrator/migrate (datasource)
+                           ;(get-in-config [:migrator :migrations-path]))
          context)
   (stop [this context]
         (log/info "Shutting down migration service.")
