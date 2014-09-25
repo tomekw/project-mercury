@@ -1,10 +1,12 @@
 (ns jupiter.core
+  (:import [java.sql.SQLException])
   (:require [clojure.tools.logging :as log]
             [clojure.java.jdbc :as jdbc]))
 
-; TODO: handle index on schema_migrations table
 (def ^{:private true} schema-migrations-table-ddl
-  ["CREATE TABLE IF NOT EXISTS schema_migrations (version text NOT NULL)"])
+  ["CREATE TABLE IF NOT EXISTS schema_migrations (version text NOT NULL);
+   CREATE UNIQUE INDEX index_schema_migrations_on_version
+   ON schema_migrations (version);"])
 
 (def ^{:private true} migration-pattern
   #"\A\d+_.+\.sql\z")
@@ -38,7 +40,9 @@
 (defn- apply-migrations [datasource migrations])
 
 (defn ensure-schema-migrations-table [datasource]
-  (jdbc/execute! datasource schema-migrations-table-ddl))
+  (try
+    (jdbc/execute! datasource schema-migrations-table-ddl)
+    (catch java.sql.SQLException _)))
 
 (defn migrate [datasource migrations-path]
   (apply-migrations datasource (pending-migrations migrations-path)))
