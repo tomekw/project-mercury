@@ -37,7 +37,18 @@
 (defn- pending-migrations [datasource migrations-path]
   (filter #((pending-migration-ids datasource migrations-path) (migration-id %)) (all-migrations migrations-path)))
 
-(defn- apply-migrations [datasource migrations])
+(defn- migration-body [migration]
+  [(slurp migration)])
+
+(defn- apply-migration [datasource migration-body]
+  (try
+    (jdbc/execute! datasource migration-body)
+    (catch java.sql.SQLException e
+      (log/error (.getMessage e))
+      (throw e))))
+
+(defn- apply-migrations [datasource migrations]
+  (doall (map #(apply-migration datasource (migration-body %)) migrations)))
 
 (defn ensure-schema-migrations-table [datasource]
   (try
@@ -45,4 +56,4 @@
     (catch java.sql.SQLException _)))
 
 (defn migrate [datasource migrations-path]
-  (apply-migrations datasource (pending-migrations migrations-path)))
+  (apply-migrations datasource (pending-migrations datasource migrations-path)))

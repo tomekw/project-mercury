@@ -15,8 +15,8 @@
   (start [this context]
          (log/info "Running pending migrations (if any).")
          (migrator/ensure-schema-migrations-table (datasource))
-         ;(migrator/migrate (datasource)
-                           ;(get-in-config [:migrator :migrations-path]))
+         (migrator/migrate (datasource)
+                           (get-in-config [:migrator :migrations-path]))
          context)
   (stop [this context]
         (log/info "Shutting down migration service.")
