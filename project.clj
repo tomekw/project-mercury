@@ -16,5 +16,5 @@
                  [puppetlabs/trapperkeeper "0.5.1"]
                  [puppetlabs/trapperkeeper-webserver-jetty9 "0.7.5"]
                  [yesql "0.4.0"]]
-  :aliases {"tk" ["trampoline" "run" "--config" "resources/config/config.conf" "--bootstrap-config" "resources/config/bootstrap.cfg"]}
+  :aliases {"tk" ["trampoline" "run" "--config" "resources/config/config.edn" "--bootstrap-config" "resources/config/bootstrap.cfg"]}
   :main puppetlabs.trapperkeeper.main)

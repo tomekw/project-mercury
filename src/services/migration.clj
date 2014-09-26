@@ -9,9 +9,6 @@
   MigrationService
   [[:ConfigService get-in-config]
    [:DatabaseService datasource]]
-  (init [this context]
-        (log/info "Initializing migration service.")
-        context)
   (start [this context]
          (log/info "Running pending migrations (if any).")
          (migrator/ensure-schema-migrations-table (datasource))

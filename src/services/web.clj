@@ -8,9 +8,6 @@
    [:DatabaseService datasource]
    [:MigrationService]
    [:WebserverService add-ring-handler]]
-  (init [this context]
-        (log/info "Initializing web service.")
-        context)
   (start [this context]
          (log/info "Starting web service.")
          (let [context-path (get-in-config [:web :context-path] "/")
