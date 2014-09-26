@@ -13,9 +13,10 @@
         context)
   (start [this context]
          (log/info "Starting web service.")
-         (let [context-path (get-in-config [:web :context-path] "/")]
+         (let [context-path (get-in-config [:web :context-path] "/")
+               options      {:prone-enabled? (get-in-config [:prone :enabled])}]
            (log/info (format "Setting context path to %s." context-path))
-           (add-ring-handler (web/handler (datasource)) context-path))
+           (add-ring-handler (web/handler (datasource) options) context-path))
          context)
   (stop [this context]
         (log/info "Shutting down web service.")

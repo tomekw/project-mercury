@@ -9,6 +9,7 @@
                  [hikari-cp "0.6.0"]
                  [liberator "0.12.2"]
                  [postgresql "9.3-1102.jdbc41"]
+                 [prone "0.6.0"]
                  [ring/ring-anti-forgery "1.0.0"]
                  [dhruv/ring-secure-headers "0.3.0"]
                  [org.clojure/tools.logging "0.3.1"]

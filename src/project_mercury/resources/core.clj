@@ -9,6 +9,7 @@
             [ring.middleware.params :refer [wrap-params]]
             [ring.middleware.cookies :refer [wrap-cookies]]
             [clojure.tools.logging :as log]
+            [prone.middleware :refer [wrap-exceptions]]
             [project-mercury.resources.posts :as posts]
             [project-mercury.resources.users :as users]))
 
@@ -24,7 +25,7 @@
         [["users/" :id] (:user handlers)]
         [[#".+"] (fn [req] {:status 404 :body "Not found"})]]])
 
-(defn handler [datasource]
+(defn handler [datasource options]
   (->
     (routes/make-handler (make-routes (make-handlers datasource)))
     wrap-secure-headers
@@ -34,4 +35,5 @@
     wrap-nested-params
     wrap-multipart-params
     wrap-params
-    wrap-cookies))
+    wrap-cookies
+    (cond-> (:prone-enabled? options) wrap-exceptions)))
