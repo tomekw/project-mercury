@@ -1,4 +1,4 @@
-(ns project-mercury.services.database
+(ns services.database
   (:require [clojure.tools.logging :as log]
             [hikari-cp.core :as cp]
             [puppetlabs.trapperkeeper.core :refer [defservice]]

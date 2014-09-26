@@ -1,4 +1,4 @@
-(ns project-mercury.services.migration
+(ns services.migration
   (:require [clojure.tools.logging :as log]
             [puppetlabs.trapperkeeper.core :refer [defservice]]
             [jupiter.core :as migrator]))

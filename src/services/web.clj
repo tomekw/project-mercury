@@ -1,7 +1,6 @@
-(ns project-mercury.services.web
+(ns services.web
   (:require [clojure.tools.logging :as log]
             [puppetlabs.trapperkeeper.core :refer [defservice]]
-            [project-mercury.services.database]
             [project-mercury.resources.core :as web]))
 
 (defservice service
