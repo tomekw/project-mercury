@@ -29,7 +29,8 @@
 
 (defn- pending-migrations [datasource all-migrations]
   (let [applied-versions (set (jdbc/query datasource applied-versions-query))]
-    (filter #(not (applied-versions (select-keys % [:version]))) all-migrations)))
+    (sort-by #(:version %)
+             (filter #(not (applied-versions (select-keys % [:version]))) all-migrations))))
 
 (defn- migration-body [migration]
   [(slurp (:file migration))])
