@@ -4,6 +4,7 @@ CREATE TABLE users (
   email text NOT NULL,
   encryption_key text,
   challenge_text text,
+  invitation_token text,
   created_at timestamp without time zone NOT NULL,
   updated_at timestamp without time zone NOT NULL
 );
@@ -11,4 +12,5 @@ CREATE TABLE users (
 CREATE UNIQUE INDEX index_users_on_lower_email ON users (LOWER(email));
 CREATE UNIQUE INDEX index_users_on_encryption_key ON users (encryption_key);
 CREATE UNIQUE INDEX index_users_on_challenge_text ON users (challenge_text);
+CREATE UNIQUE INDEX index_users_on_invitation_token ON users (invitation_token);
 CREATE INDEX index_users_on_created_at ON users (created_at);
