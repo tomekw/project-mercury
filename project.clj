@@ -14,7 +14,7 @@
                  [dhruv/ring-secure-headers "0.3.0"]
                  [org.clojure/tools.logging "0.3.1"]
                  [puppetlabs/trapperkeeper "0.5.1"]
-                 [puppetlabs/trapperkeeper-webserver-jetty9 "0.8.0"]
+                 [puppetlabs/trapperkeeper-webserver-jetty9 "0.9.0"]
                  [yesql "0.4.0"]]
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.7"]]}}
   :plugins [[lein-jupiter "0.1.0"]]
