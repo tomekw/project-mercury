@@ -6,7 +6,7 @@
   :dependencies [[bidi "1.10.5"]
                  [org.clojure/clojure "1.6.0"]
                  [org.clojure/java.jdbc "0.3.6"]
-                 [hikari-cp "0.8.0"]
+                 [hikari-cp "0.9.0"]
                  [liberator "0.12.2"]
                  [postgresql "9.3-1102.jdbc41"]
                  [prone "0.6.0"]
